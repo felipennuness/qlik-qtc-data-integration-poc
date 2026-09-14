@@ -1,33 +1,69 @@
-# Screenshot Guidelines
+# Technical Evidence Screenshots
 
-This folder will contain sanitized screenshots that demonstrate the technical implementation without exposing confidential client information.
+A curated screenshot set has been prepared from the real project. Only sanitized versions should be published in this public repository.
 
-## Good screenshots to add
+## Selected public evidence
 
-- Qlik Talend Cloud Data Movement overview with sensitive identifiers hidden
-- Connection configuration screens with credentials, hostnames, IPs, tenant IDs, and database names redacted
-- Successful movement / task status screens
-- High-level AWS or database architecture views using generic names
-- Validation results using synthetic or anonymized data
+### 1. Qlik Data Gateway running
 
-## Never publish
+**Planned file:** `01-qlik-data-gateway-running.jpg`
 
-- Passwords, API keys, tokens, certificates, or connection strings
-- Public or private IP addresses tied to the client
-- Real server or database names that expose internal infrastructure
-- Customer or employee data
-- Internal URLs or tenant identifiers
-- Proprietary documents or screenshots with confidential business information
+Shows the Linux service status for **Qlik Data Gateway – Data Movement** with the service active and running. This supports the infrastructure and gateway configuration stage of the POC.
 
-## Naming convention
+### 2. MySQL → Azure replication pipeline
 
-Use descriptive file names such as:
+**Planned file:** `02-mysql-to-azure-pipeline.jpg`
+
+Shows the Qlik replication flow with:
 
 ```text
-01-qtc-data-movement-overview.png
-02-connection-validation-redacted.png
-03-data-movement-success.png
-04-architecture-sanitized.png
+MySQL On-Premises → Replication → Azure SQL Database
 ```
 
-Every screenshot should be reviewed and sanitized before being committed to this public repository.
+Internal connection and project names are replaced with generic portfolio labels.
+
+### 3. Azure SQL target validation
+
+**Planned file:** `03-azure-sql-data-validation.jpg`
+
+Shows the destination database after replication with a successful query and transferred records. Personal/test identifiers are removed from the public version.
+
+### 4. Qlik Open Lakehouse / Apache Iceberg exploration
+
+**Planned file:** `04-qlik-open-lakehouse-iceberg.jpg`
+
+Shows the Qlik Open Lakehouse cluster creation workflow and the CDC workload used during the AWS + Apache Iceberg architecture exploration.
+
+### 5. AWS network integration in Qlik
+
+**Planned file:** `05-aws-network-integration.jpg`
+
+Shows that the AWS network integration was accepted in Qlik. AWS account numbers, VPC IDs, internal space names, and project-specific identifiers are removed or generalized.
+
+## Screenshots intentionally excluded
+
+Some real project screenshots are not suitable for a public portfolio because they expose excessive infrastructure detail with limited additional portfolio value. Examples include:
+
+- raw AWS VPC and subnet detail pages
+- KMS key identifiers and ARNs
+- IAM account and role detail screens
+- raw Azure resource configuration containing IP addresses or administrative identifiers
+- screenshots containing internal hostnames, emails, customer/project names, or unredacted test data
+
+These images remain useful as private implementation evidence but should not be published publicly.
+
+## Current SQL Server phase
+
+The next architecture phase will use **Microsoft SQL Server as the test destination for pipeline development**. A public screenshot should only be added after that destination and its pipeline flow are actually configured and validated.
+
+## Sanitization rules
+
+Public screenshots must not expose:
+
+- passwords, API keys, tokens, or certificates
+- IP addresses tied to project infrastructure
+- AWS account numbers, VPC/subnet IDs, ARNs, or KMS identifiers
+- internal server or database names
+- email addresses or tenant identifiers
+- personal data such as CPF
+- customer-specific or confidential business information
