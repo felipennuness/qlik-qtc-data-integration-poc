@@ -4,24 +4,21 @@
 
 This section documents the architecture of the Qlik Talend Cloud data integration POC at its **current validated stage**.
 
-The public documentation intentionally abstracts client-specific details while preserving the technical concepts involved in the implementation.
+The public documentation intentionally abstracts client-specific details while preserving the real technical flow that was implemented.
 
-## Current architecture
+## Validated architecture
 
 ```text
 +-----------------------------+
-| Database / Cloud Sources    |
+| On-Premises Environment     |
 |-----------------------------|
-| SQL Server                  |
-| MySQL                       |
-| Azure SQL Database          |
-| AWS Environment             |
+| MySQL Database              |
 +-------------+---------------+
               |
               v
 +-----------------------------+
 | Integration / VM Layer      |
-| Connectivity & Environment  |
+| Connectivity Environment    |
 +-------------+---------------+
               |
               v
@@ -38,25 +35,35 @@ The public documentation intentionally abstracts client-specific details while p
               |
               v
 +-----------------------------+
-| Target Data Environment     |
+| Azure SQL Database          |
+| Cloud Destination           |
 +-------------+---------------+
               |
               v
 +-----------------------------+
-| Validation / Troubleshooting|
+| Validation                  |
 +-----------------------------+
 ```
 
-## Design principles
+## Alternative architecture explored
 
-- Keep source systems decoupled from analytical consumption layers.
-- Validate connectivity before adding transformation complexity.
-- Test data movement independently before advancing to downstream pipeline stages.
-- Document technical milestones as they are implemented.
-- Avoid exposing customer infrastructure or production credentials in public documentation.
+A second path using **AWS + Apache Iceberg** was configured/explored during the POC, but it was not finalized because of the additional infrastructure cost required to continue that environment.
+
+```text
+MySQL On-Premises
+      |
+      v
+Qlik Talend Cloud
+      |
+      v
+AWS + Apache Iceberg
+      |
+      v
+Not finalized due to POC cost constraints
+```
 
 ## Current boundary
 
-The architecture documented here ends at the successfully validated **Data Movement** stage.
+The architecture currently validated in the project ends with successful **Data Movement from MySQL on-premises to Azure SQL Database**.
 
-Pipeline orchestration, transformation, Data Products, analytics, automation, reporting, and Qlik Answers are part of the future roadmap and are not represented as completed implementation.
+The AWS + Iceberg path is documented only as an explored alternative. Pipeline orchestration, transformation, Data Products, analytics, automation, reporting, and Qlik Answers remain future stages until they are actually implemented and validated.
