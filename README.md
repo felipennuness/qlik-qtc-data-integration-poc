@@ -3,46 +3,34 @@
 ![Status](https://img.shields.io/badge/status-in%20progress-orange)
 ![Qlik](https://img.shields.io/badge/Qlik-Talend%20Cloud-009845)
 ![Data Movement](https://img.shields.io/badge/Data%20Movement-working-success)
-![Azure SQL](https://img.shields.io/badge/Azure-SQL%20Database-0078D4)
-![SQL Server](https://img.shields.io/badge/Microsoft-SQL%20Server-CC2927)
-![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1)
-![AWS](https://img.shields.io/badge/AWS-Cloud-232F3E)
+![MySQL](https://img.shields.io/badge/Source-MySQL%20On--Premises-4479A1)
+![Azure SQL](https://img.shields.io/badge/Target-Azure%20SQL%20Database-0078D4)
+![AWS](https://img.shields.io/badge/AWS%20%2B%20Iceberg-not%20finalized-lightgrey)
 
 > **Portfolio case study based on a real ongoing BI/data integration POC.** Client-specific names, credentials, addresses, infrastructure identifiers, and business data are intentionally omitted or anonymized.
 
 ## Overview
 
-This project documents the implementation of a data integration proof of concept using **Qlik Talend Cloud (QTC)**. The goal is to progressively build an end-to-end modern data architecture, starting with infrastructure and connectivity and advancing toward governed data delivery and analytics.
+This project documents an ongoing **Qlik Talend Cloud (QTC)** proof of concept focused on moving data from an on-premises environment to the cloud.
+
+The validated implementation at the current stage is a data movement flow from an **on-premises MySQL database** to **Azure SQL Database** using Qlik Talend Cloud.
 
 The project is currently **in progress**.
 
-### Current milestone
+## Current validated milestone
 
-**Data Movement is configured, validated, and working.**
+**Data Movement from MySQL on-premises to Azure SQL Database is configured and working.**
 
-The work completed so far includes environment preparation, connectivity, source/target configuration, data movement validation, and troubleshooting across heterogeneous database and cloud technologies.
+The work completed so far includes environment preparation, connectivity configuration, source and target setup, data movement execution, validation, and troubleshooting.
 
-## Technologies used so far
-
-- **Qlik Talend Cloud (QTC)**
-- **Qlik Data Movement**
-- **AWS**
-- **Azure SQL Database**
-- **Microsoft SQL Server**
-- **MySQL**
-- **Virtual machine / integration environment**
-- Relational database connectivity
-- Source-to-target data validation
-
-## Current architecture stage
+## Validated architecture
 
 ```text
-Database / Cloud Sources
+On-Premises Environment
         |
-        |  SQL Server
-        |  MySQL
-        |  Azure SQL Database
-        |  AWS environment
+        v
+MySQL Database
+        |
         v
 Integration / VM Environment
         |
@@ -50,16 +38,42 @@ Integration / VM Environment
 Qlik Talend Cloud
         |
         v
-Data Movement
+Qlik Data Movement
         |
         v
-Target Data Environment
+Azure SQL Database
         |
         v
-Validation
+Data Validation
 ```
 
-> The diagram represents the technologies and integration layers involved in the POC without exposing the client's internal topology or connection details.
+## Technologies used in the validated flow
+
+- **Qlik Talend Cloud (QTC)**
+- **Qlik Data Movement**
+- **MySQL** — on-premises source
+- **Azure SQL Database** — cloud destination
+- **Virtual machine / integration environment**
+- Source-to-target connectivity and validation
+
+## AWS + Apache Iceberg exploration
+
+An alternative architecture using **AWS with Apache Iceberg** was also configured/explored during the POC.
+
+This path was **not finalized** because continuing the AWS environment would introduce additional infrastructure cost for the proof of concept. It is therefore documented as an explored alternative, not as a completed production-ready data movement flow.
+
+```text
+MySQL On-Premises
+        |
+        v
+Qlik Talend Cloud
+        |
+        v
+AWS + Apache Iceberg
+        |
+        v
+Not finalized due to POC cost constraints
+```
 
 ## What I implemented
 
@@ -67,27 +81,36 @@ Validation
 
 - Prepared the integration environment required for the POC.
 - Worked with a **virtual machine** as part of the integration architecture.
-- Configured and validated connectivity between Qlik Talend Cloud and database/cloud environments.
-- Worked with **AWS, Azure SQL Database, SQL Server, and MySQL** in connectivity and data movement scenarios.
+- Configured connectivity between the on-premises MySQL source and Qlik Talend Cloud.
+- Configured the Azure SQL Database destination connection.
+- Validated source and target connectivity.
+- Diagnosed and corrected connectivity/configuration issues during setup.
 
 ### Qlik Talend Cloud
 
 - Configured the Qlik Talend Cloud environment for the POC.
-- Configured source and target connections.
-- Implemented **Data Movement** scenarios.
-- Validated successful data transfer between configured environments.
-- Performed troubleshooting during connectivity and movement configuration.
-- Validated the current milestone before advancing to subsequent architecture layers.
+- Configured **MySQL on-premises as the source**.
+- Configured **Azure SQL Database as the destination**.
+- Implemented and executed **Qlik Data Movement**.
+- Validated that data successfully reached the Azure destination.
+- Performed troubleshooting during configuration and movement validation.
+
+### Alternative architecture explored
+
+- Configured/explored an **AWS + Apache Iceberg** destination scenario.
+- Did not finalize this path because of infrastructure cost considerations for the POC.
 
 ## Project status
 
 | Stage | Status |
 |---|---|
-| Infrastructure / VM preparation | ✅ Implemented |
-| Source and target connectivity | ✅ Implemented |
+| Integration / VM environment preparation | ✅ Implemented |
+| MySQL on-premises source connectivity | ✅ Implemented |
+| Azure SQL Database target connectivity | ✅ Implemented |
 | Qlik Talend Cloud configuration | ✅ Implemented |
-| Data Movement | ✅ Working |
-| Data transfer validation | ✅ Implemented |
+| MySQL → Azure Data Movement | ✅ Working |
+| Data transfer validation in Azure | ✅ Implemented |
+| AWS + Apache Iceberg alternative | 🟡 Explored / not finalized due to cost |
 | Advanced pipelines / orchestration | 🔄 Next stage |
 | Transformations / preparation | ⏳ Planned |
 | Data Products | ⏳ Planned |
@@ -125,4 +148,4 @@ Validation
 
 This repository is a **portfolio representation** of practical work performed in a real project. It does not contain production credentials, IP addresses, server names, customer data, proprietary scripts, confidential screenshots, or internal company documentation.
 
-As the POC progresses, this repository will be updated with sanitized architecture diagrams, technical notes, synthetic examples, and validated project milestones.
+As the POC progresses, this repository will be updated only with milestones that have actually been implemented and technically validated.
