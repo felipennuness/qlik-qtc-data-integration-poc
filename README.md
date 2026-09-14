@@ -43,6 +43,24 @@ Data Validation
 
 Work completed in this phase includes environment preparation, connectivity configuration, source and target setup, Data Movement execution, validation, and troubleshooting.
 
+### Evidence — Qlik Data Gateway running
+
+![Qlik Data Gateway running](screenshots/rc18_portfolio_screenshots_sanitized/01-qlik-data-gateway-running.jpg)
+
+The Qlik Data Gateway service is active in the integration environment, supporting connectivity between the on-premises source and Qlik Talend Cloud.
+
+### Evidence — MySQL → Azure replication flow
+
+![MySQL to Azure replication](screenshots/rc18_portfolio_screenshots_sanitized/02-mysql-to-azure-pipeline.jpg)
+
+The replication flow shows the Phase 1 architecture with **MySQL on-premises as source** and **Azure SQL Database as destination**.
+
+### Evidence — Azure SQL validation
+
+![Azure SQL validation](screenshots/rc18_portfolio_screenshots_sanitized/03-azure-sql-data-validation.jpg)
+
+The destination database contains the replicated dataset and the transferred data can be queried successfully.
+
 ## Phase 2 — Current test direction
 
 The next implementation phase will keep **MySQL on-premises as the source** and use **SQL Server as the test destination**.
@@ -73,6 +91,8 @@ An alternative architecture using **AWS with Apache Iceberg** was also configure
 
 This path was **not finalized** because continuing the AWS environment would introduce additional infrastructure cost for the proof of concept. It is documented as an explored alternative, not as a completed data movement flow.
 
+The supporting evidence for this exploration includes Qlik Open Lakehouse cluster configuration and AWS network integration accepted in Qlik. See the [Technical Evidence Screenshots](screenshots/README.md) page for the sanitized images.
+
 ## Technologies by project stage
 
 ### Validated
@@ -90,10 +110,11 @@ This path was **not finalized** because continuing the AWS environment would int
 ### Explored but not finalized
 - **AWS**
 - **Apache Iceberg**
+- **Qlik Open Lakehouse**
 
-## Technical evidence selected
+## Technical evidence
 
-A curated set of real project screenshots has been reviewed and sanitized for public portfolio use. The selected evidence covers:
+A curated set of real project screenshots was reviewed and sanitized for public portfolio use. The evidence covers:
 
 - Qlik Data Gateway running on the integration environment
 - MySQL → Azure replication flow in Qlik
@@ -101,15 +122,16 @@ A curated set of real project screenshots has been reviewed and sanitized for pu
 - Qlik Open Lakehouse / Apache Iceberg exploration
 - AWS network integration accepted in Qlik
 
-Sensitive information such as CPF, AWS account numbers, VPC IDs, internal hostnames, emails, and client-specific identifiers is removed from the public versions.
+Sensitive information such as CPF, AWS account numbers, VPC IDs, internal hostnames, emails, and client-specific identifiers was removed from the public versions.
 
-See [Technical Evidence Screenshots](screenshots/README.md) for the selected evidence and sanitization rules.
+[View all technical evidence →](screenshots/README.md)
 
 ## Project status
 
 | Stage | Status |
 |---|---|
 | Integration / VM environment preparation | ✅ Implemented |
+| Qlik Data Gateway | ✅ Running |
 | MySQL on-premises source connectivity | ✅ Implemented |
 | Azure SQL Database target connectivity | ✅ Implemented |
 | Qlik Talend Cloud configuration | ✅ Implemented |
@@ -142,7 +164,8 @@ See [Technical Evidence Screenshots](screenshots/README.md) for the selected evi
 ├── roadmap/
 │   └── README.md
 └── screenshots/
-    └── README.md
+    ├── README.md
+    └── rc18_portfolio_screenshots_sanitized/
 ```
 
 ## Documentation
