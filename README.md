@@ -91,6 +91,20 @@ This path was **not finalized** because continuing the AWS environment would int
 - **AWS**
 - **Apache Iceberg**
 
+## Technical evidence selected
+
+A curated set of real project screenshots has been reviewed and sanitized for public portfolio use. The selected evidence covers:
+
+- Qlik Data Gateway running on the integration environment
+- MySQL → Azure replication flow in Qlik
+- Azure SQL destination validation after replication
+- Qlik Open Lakehouse / Apache Iceberg exploration
+- AWS network integration accepted in Qlik
+
+Sensitive information such as CPF, AWS account numbers, VPC IDs, internal hostnames, emails, and client-specific identifiers is removed from the public versions.
+
+See [Technical Evidence Screenshots](screenshots/README.md) for the selected evidence and sanitization rules.
+
 ## Project status
 
 | Stage | Status |
@@ -119,9 +133,11 @@ This path was **not finalized** because continuing the AWS environment would int
 ├── PROJECT_SCOPE.md
 ├── architecture/
 │   └── README.md
-├── infrastructure/
-│   └── README.md
 ├── data-movement/
+│   └── README.md
+├── docs/
+│   └── challenges-and-decisions.md
+├── infrastructure/
 │   └── README.md
 ├── roadmap/
 │   └── README.md
@@ -135,8 +151,9 @@ This path was **not finalized** because continuing the AWS environment would int
 - [Architecture](architecture/README.md)
 - [Infrastructure & Connectivity](infrastructure/README.md)
 - [Data Movement](data-movement/README.md)
+- [Challenges & Technical Decisions](docs/challenges-and-decisions.md)
 - [Project Roadmap](roadmap/README.md)
-- [Screenshot Guidelines](screenshots/README.md)
+- [Technical Evidence Screenshots](screenshots/README.md)
 
 ## Confidentiality
 
