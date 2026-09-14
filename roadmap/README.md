@@ -1,6 +1,6 @@
 # Project Roadmap
 
-This POC is actively evolving. The roadmap below separates **validated implementation**, **explored alternatives**, and **future stages**.
+This POC is actively evolving. The roadmap below separates **validated implementation**, **current test work**, **explored alternatives**, and **future stages**.
 
 ## Validated implementation
 
@@ -13,18 +13,19 @@ This POC is actively evolving. The roadmap below separates **validated implement
 - Target-side validation in Azure
 - Connectivity and movement troubleshooting
 
+## Current test phase
+
+- Configure **SQL Server as the lower-cost test destination**
+- Keep **MySQL on-premises as the source**
+- Configure and validate pipeline behavior using the SQL Server test target
+- Test pipeline orchestration and transformation scenarios
+- Validate downstream data flow
+
 ## Explored alternative
 
 - AWS environment configuration/exploration
 - Apache Iceberg destination scenario
 - **Status:** not finalized because of additional infrastructure cost for the POC
-
-## Next stage
-
-- Advanced pipeline configuration
-- Pipeline orchestration
-- Transformation and preparation scenarios
-- Validation of downstream data flow
 
 ## Planned Qlik Cloud expansion
 
@@ -36,4 +37,4 @@ This POC is actively evolving. The roadmap below separates **validated implement
 
 ## Documentation principle
 
-Only stages that have been implemented and technically validated are marked as completed in this repository. Explored alternatives and planned capabilities are explicitly separated from the validated implementation.
+Only stages that have been implemented and technically validated are marked as completed in this repository. Current test work, explored alternatives, and planned capabilities are explicitly separated from the validated implementation.
