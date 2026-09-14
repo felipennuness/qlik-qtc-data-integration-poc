@@ -1,19 +1,23 @@
 # Project Roadmap
 
-This POC is actively evolving. The roadmap below separates **validated implementation** from **planned exploration**.
+This POC is actively evolving. The roadmap below separates **validated implementation**, **explored alternatives**, and **future stages**.
 
-## Completed
+## Validated implementation
 
-- Infrastructure / VM preparation
+- Integration / VM environment preparation
 - Qlik Talend Cloud environment setup
-- Source and target connectivity
-- AWS-related integration configuration
-- Azure SQL Database connectivity
-- Microsoft SQL Server connectivity
-- MySQL connectivity
+- MySQL on-premises source connectivity
+- Azure SQL Database destination connectivity
 - Qlik Data Movement configuration
-- Successful data transfer validation
+- Successful MySQL-to-Azure data transfer
+- Target-side validation in Azure
 - Connectivity and movement troubleshooting
+
+## Explored alternative
+
+- AWS environment configuration/exploration
+- Apache Iceberg destination scenario
+- **Status:** not finalized because of additional infrastructure cost for the POC
 
 ## Next stage
 
@@ -32,4 +36,4 @@ This POC is actively evolving. The roadmap below separates **validated implement
 
 ## Documentation principle
 
-Only stages that have been implemented and technically validated are marked as completed in this repository. Planned capabilities remain in the roadmap until hands-on implementation is finished.
+Only stages that have been implemented and technically validated are marked as completed in this repository. Explored alternatives and planned capabilities are explicitly separated from the validated implementation.
