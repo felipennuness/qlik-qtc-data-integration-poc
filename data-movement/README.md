@@ -2,49 +2,46 @@
 
 ## Current milestone: working
 
-The principal technical milestone reached so far in this POC is successful **Qlik Data Movement** configuration and validation.
+The principal technical milestone reached so far in this POC is successful **Qlik Data Movement from an on-premises MySQL database to Azure SQL Database**.
 
 ## Work completed
 
-- Configured Qlik Talend Cloud connections required for data movement.
-- Defined source and target participation in movement scenarios.
-- Executed data movement between configured environments.
+- Configured the MySQL on-premises source connection in Qlik Talend Cloud.
+- Configured the Azure SQL Database destination connection.
+- Defined the source-to-target Data Movement flow.
+- Executed data movement from MySQL to Azure.
 - Confirmed successful transfer at the current POC stage.
-- Validated the moved data after transfer.
+- Validated the moved data in the Azure destination.
 - Troubleshot connectivity and configuration issues during implementation.
 
-## Technologies used in the POC
-
-- AWS
-- Azure SQL Database
-- Microsoft SQL Server
-- MySQL
-- Qlik Talend Cloud
-
-The exact source-to-target combinations are intentionally generalized in the public portfolio version to avoid exposing the client's internal architecture.
-
-## Validation flow
+## Validated flow
 
 ```text
-Source connection
+MySQL On-Premises
       ↓
-Connectivity test
+Source Connectivity
       ↓
-Data Movement configuration
+Qlik Talend Cloud
       ↓
-Movement execution
+Qlik Data Movement
       ↓
-Target validation
+Azure SQL Database
       ↓
-Troubleshooting / correction if required
-      ↓
-Successful milestone
+Target Validation
 ```
+
+## AWS + Apache Iceberg exploration
+
+A separate AWS + Apache Iceberg destination scenario was configured/explored during the project. This alternative was **not finalized because of the additional infrastructure cost for the POC**.
+
+It should therefore be understood as an architectural exploration rather than a completed data movement path.
 
 ## Why this stage matters
 
-Before building downstream transformations, pipelines, analytics, reporting, or AI-assisted use cases, the architecture must reliably move data between the required environments. This milestone establishes that foundation.
+Before building downstream transformations, pipelines, analytics, reporting, or AI-assisted use cases, the architecture first needed to reliably move data from the on-premises operational source into a cloud destination.
+
+The successful MySQL-to-Azure flow establishes that foundation.
 
 ## Next technical step
 
-The next phase is to expand beyond basic movement into **pipeline/orchestration and transformation scenarios**. These are documented as roadmap items until they are implemented and validated.
+The next phase is to expand beyond the validated movement into **pipeline/orchestration and transformation scenarios**. These remain roadmap items until they are implemented and technically validated.
