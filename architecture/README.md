@@ -1,73 +1,73 @@
-# Architecture
+# Arquitetura
 
-## Purpose
+## Objetivo
 
-This section documents the architecture of the Qlik Talend Cloud data integration POC across its validated and current test stages.
+Esta seção documenta a arquitetura da POC de integração de dados com Qlik Talend Cloud, contemplando as etapas já validadas e as etapas de testes atuais.
 
-The public documentation intentionally abstracts client-specific details while preserving the real technical flow that was implemented and the next environment being prepared.
+A documentação pública abstrai intencionalmente os detalhes específicos do cliente, preservando o fluxo técnico real que foi implementado e o próximo ambiente em preparação.
 
-## Phase 1 — Validated architecture
+## Etapa 1 — Arquitetura validada
 
 ```text
 +-----------------------------+
-| On-Premises Environment     |
+| Ambiente local               |
 |-----------------------------|
-| MySQL Database              |
-| Operational Source          |
+| Banco de dados MySQL         |
+| Origem operacional           |
 +-------------+---------------+
               |
               v
 +-----------------------------+
 | Qlik Data Gateway / VM      |
-| Connectivity Environment    |
+| Ambiente de conectividade   |
 +-------------+---------------+
               |
               v
 +-----------------------------+
 | Qlik Talend Cloud           |
-| Connection Configuration    |
+| Configuração das conexões   |
 +-------------+---------------+
               |
               v
 +-----------------------------+
-| Initial Load + CDC          |
-| Change Data Capture         |
+| Carga inicial + CDC         |
+| Captura de dados alterados  |
 +-------------+---------------+
               |
               v
 +-----------------------------+
 | Qlik Data Movement          |
-| Incremental Replication     |
+| Replicação incremental      |
 +-------------+---------------+
               |
               v
 +-----------------------------+
 | Azure SQL Database          |
-| Validated Destination       |
+| Destino validado            |
 +-------------+---------------+
               |
               v
 +-----------------------------+
-| Validation                  |
+| Validação                   |
 +-----------------------------+
 ```
 
-This **MySQL on-premises → Azure SQL Database** flow is the architecture validated as working in Phase 1.
+Este fluxo de **MySQL local → Azure SQL Database** é a arquitetura validada como funcional na Etapa 1.
 
-### CDC role in the architecture
+### Papel do CDC na arquitetura
 
-The replication design uses **CDC (Change Data Capture)** after the initial load so changes in the operational MySQL source can be captured and propagated incrementally to the destination.
+O desenho da replicação utiliza **CDC (Change Data Capture, ou Captura de Dados Alterados)** após a carga inicial, permitindo capturar e propagar incrementalmente para o destino as mudanças realizadas na origem operacional MySQL.
 
-This avoids treating each source change as a reason to reload the complete dataset. The POC validates the functional replication behavior; it does not claim a production latency SLA or strict real-time guarantee.
+Assim, cada alteração na origem não exige uma nova carga completa de todo o conjunto de dados. A POC valida o comportamento funcional da replicação, mas não estabelece um SLA de latência de produção nem uma garantia de processamento estritamente em tempo real.
 
-## Phase 2 — Current test direction
+## Etapa 2 — Direcionamento atual dos testes
 
-To continue the POC with lower infrastructure cost, the next test architecture will use **SQL Server as the destination** while keeping MySQL on-premises as the source.
+Para dar continuidade à POC com menor custo de infraestrutura, a próxima arquitetura de testes utilizará o **SQL Server como destino**, mantendo o MySQL local como origem.
 
-The main purpose of this phase is to configure and validate **Qlik Talend Cloud pipelines, orchestration, transformations, and continued CDC/incremental replication tests**.
+O principal objetivo desta etapa é configurar e validar **pipelines do Qlik Talend Cloud, orquestração, transformações e a continuidade dos testes de CDC / replicação incremental**.
 
 ```text
-MySQL On-Premises
+MySQL local (on-premises)
       |
       v
 Qlik Data Gateway / VM
@@ -76,22 +76,22 @@ Qlik Data Gateway / VM
 Qlik Talend Cloud
       |
       v
-Data Movement / CDC / Pipeline Tests
+Testes de Data Movement / CDC / Pipelines
       |
       v
 SQL Server
 ```
 
-This phase must not be described as fully implemented until the SQL Server destination and pipeline behavior have been technically validated.
+Esta etapa não deve ser descrita como totalmente implementada até que o destino SQL Server e o comportamento dos pipelines tenham sido validados tecnicamente.
 
-## Alternative architecture explored
+## Arquitetura alternativa explorada
 
-A separate path using **AWS + Qlik Open Lakehouse + Apache Iceberg** was configured/explored during the POC. The Open Lakehouse configuration included a **CDC workload**.
+Um caminho separado utilizando **AWS + Qlik Open Lakehouse + Apache Iceberg** foi configurado e explorado durante a POC. A configuração do Open Lakehouse incluiu uma carga de trabalho de **CDC**.
 
-It was not finalized because of the additional infrastructure cost required to continue that environment.
+Essa alternativa não foi finalizada devido ao custo adicional necessário para manter a infraestrutura.
 
 ```text
-MySQL On-Premises
+MySQL local (on-premises)
       |
       v
 Qlik Talend Cloud
@@ -103,12 +103,12 @@ Qlik Open Lakehouse / CDC
 AWS + Apache Iceberg
       |
       v
-Not finalized due to POC cost constraints
+Não finalizado devido aos custos da POC
 ```
 
-## Current boundary
+## Limites e status atuais
 
-- **Validated:** MySQL on-premises → Azure SQL Database through Qlik Data Movement with CDC/incremental replication
-- **Current next test phase:** MySQL on-premises → SQL Server, focused on pipeline and continued CDC testing
-- **Explored but not finalized:** AWS + Qlik Open Lakehouse + Apache Iceberg
-- **Future stages:** Data Products, analytics consumption, Qlik Automate, Reporting, and Qlik Answers
+- **Validado:** MySQL local → Azure SQL Database por meio do Qlik Data Movement, com CDC / replicação incremental.
+- **Próxima etapa atual de testes:** MySQL local → SQL Server, com foco em pipelines e continuidade dos testes de CDC.
+- **Explorado, mas não finalizado:** AWS + Qlik Open Lakehouse + Apache Iceberg.
+- **Etapas futuras:** Produtos de Dados (Data Products), consumo analítico, Qlik Automate, relatórios e Qlik Answers.
