@@ -1,50 +1,50 @@
-# Infrastructure & Connectivity
+# Infraestrutura e conectividade
 
-## Scope
+## Escopo
 
-This section documents the infrastructure and connectivity work completed during the current stage of the POC.
+Esta seção documenta o trabalho de infraestrutura e conectividade realizado durante a etapa atual da POC.
 
-## Validated environment
+## Ambiente validado
 
 - **Qlik Talend Cloud**
-- **Virtual machine / integration environment**
-- **MySQL on-premises** as the source
-- **Azure SQL Database** as the destination
+- **Máquina virtual / ambiente de integração**
+- **MySQL local (on-premises)** como origem
+- **Azure SQL Database** como destino
 
-## Work completed
+## Trabalho concluído
 
-- Prepared the integration environment required for the POC.
-- Worked with a virtual machine as part of the integration architecture.
-- Configured the on-premises MySQL source connection.
-- Configured the Azure SQL Database destination connection.
-- Validated connectivity between the on-premises environment, Qlik Talend Cloud, and Azure.
-- Diagnosed and corrected connectivity/configuration issues encountered during setup.
-- Confirmed that the environment supported the required MySQL-to-Azure Data Movement flow.
+- Preparação do ambiente de integração necessário para a POC.
+- Utilização de uma máquina virtual como parte da arquitetura de integração.
+- Configuração da conexão com a origem MySQL local.
+- Configuração da conexão com o destino Azure SQL Database.
+- Validação da conectividade entre o ambiente local, o Qlik Talend Cloud e o Azure.
+- Diagnóstico e correção de problemas de conectividade e configuração encontrados durante a preparação.
+- Confirmação de que o ambiente suportava o fluxo de movimentação de dados do MySQL para o Azure.
 
-## Connectivity validation approach
+## Abordagem para validação da conectividade
 
 ```text
-On-Premises MySQL available
+MySQL local disponível
         ↓
-Source connectivity validated
+Conectividade com a origem validada
         ↓
-Qlik Talend Cloud connection configured
+Conexão com Qlik Talend Cloud configurada
         ↓
-Azure SQL Database connection configured
+Conexão com Azure SQL Database configurada
         ↓
-Source and target tested
+Origem e destino testados
         ↓
-Data Movement configured
+Data Movement configurado
         ↓
-Transfer to Azure validated
+Transferência para o Azure validada
 ```
 
 ## AWS + Apache Iceberg
 
-An alternative AWS architecture using Apache Iceberg was also configured/explored. It was not finalized because maintaining the required AWS resources would add cost to the proof of concept.
+Uma arquitetura alternativa com AWS e Apache Iceberg também foi configurada e explorada. Ela não foi finalizada porque a manutenção dos recursos AWS necessários acrescentaria custos à prova de conceito.
 
-This AWS path is therefore not represented as part of the completed production-ready flow.
+Portanto, esse caminho com AWS não é apresentado como parte de um fluxo concluído e pronto para produção.
 
-## Public portfolio note
+## Observação para o portfólio público
 
-Connection strings, credentials, IP addresses, tenant information, server names, client-specific ports, database names, and internal network details are intentionally excluded from this repository.
+Strings de conexão, credenciais, endereços IP, informações do tenant, nomes de servidores, portas específicas do cliente, nomes de bancos de dados e detalhes da rede interna são intencionalmente omitidos deste repositório.
