@@ -1,40 +1,40 @@
-# Project Roadmap
+# Roteiro do projeto
 
-This POC is actively evolving. The roadmap below separates **validated implementation**, **current test work**, **explored alternatives**, and **future stages**.
+Esta POC está em evolução. O roteiro abaixo separa a **implementação validada**, o **trabalho atual de testes**, as **alternativas exploradas** e as **etapas futuras**.
 
-## Validated implementation
+## Implementação validada
 
-- Integration / VM environment preparation
-- Qlik Talend Cloud environment setup
-- MySQL on-premises source connectivity
-- Azure SQL Database destination connectivity
-- Qlik Data Movement configuration
-- Successful MySQL-to-Azure data transfer
-- Target-side validation in Azure
-- Connectivity and movement troubleshooting
+- Preparação do ambiente de integração / máquina virtual
+- Configuração do ambiente Qlik Talend Cloud
+- Conectividade com a origem MySQL local
+- Conectividade com o destino Azure SQL Database
+- Configuração do Qlik Data Movement
+- Transferência bem-sucedida de dados do MySQL para o Azure
+- Validação dos dados no destino Azure
+- Investigação e resolução de problemas de conectividade e movimentação
 
-## Current test phase
+## Etapa atual de testes
 
-- Configure **SQL Server as the lower-cost test destination**
-- Keep **MySQL on-premises as the source**
-- Configure and validate pipeline behavior using the SQL Server test target
-- Test pipeline orchestration and transformation scenarios
-- Validate downstream data flow
+- Configurar o **SQL Server como destino de testes de menor custo**
+- Manter o **MySQL local como origem**
+- Configurar e validar o comportamento dos pipelines utilizando o SQL Server como destino de testes
+- Testar a orquestração de pipelines e cenários de transformação
+- Validar o fluxo de dados nas etapas seguintes
 
-## Explored alternative
+## Alternativa explorada
 
-- AWS environment configuration/exploration
-- Apache Iceberg destination scenario
-- **Status:** not finalized because of additional infrastructure cost for the POC
+- Configuração / exploração do ambiente AWS
+- Cenário de destino com Apache Iceberg
+- **Status:** não finalizado devido ao custo adicional de infraestrutura para a POC
 
-## Planned Qlik Cloud expansion
+## Expansão planejada no Qlik Cloud
 
-- Data Products
-- Qlik Cloud analytical consumption
+- Produtos de Dados (Data Products)
+- Consumo analítico no Qlik Cloud
 - Qlik Automate
-- Reporting workflows
+- Fluxos de relatórios
 - Qlik Answers
 
-## Documentation principle
+## Princípio de documentação
 
-Only stages that have been implemented and technically validated are marked as completed in this repository. Current test work, explored alternatives, and planned capabilities are explicitly separated from the validated implementation.
+Somente etapas implementadas e validadas tecnicamente são marcadas como concluídas neste repositório. O trabalho atual de testes, as alternativas exploradas e as funcionalidades planejadas são explicitamente separados da implementação validada.
