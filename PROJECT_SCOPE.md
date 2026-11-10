@@ -1,51 +1,51 @@
-# Verified Project Scope
+# Escopo validado do projeto
 
-This file is the source of truth for the public portfolio documentation of this ongoing Qlik Talend Cloud POC.
+Este arquivo é a referência oficial da documentação pública deste projeto de prova de conceito (POC) com Qlik Talend Cloud, ainda em andamento.
 
-## Validated implementation
+## Implementação validada
 
-- Operational source: **MySQL running on-premises**
-- Integration platform: **Qlik Talend Cloud (QTC)**
-- On-premises integration layer: **Qlik Data Gateway / VM environment**
-- Data integration capability: **Qlik Data Movement**
-- Replication pattern: **Initial load + CDC (Change Data Capture)**
-- Validated destination: **Azure SQL Database**
-- Validated result: **MySQL on-premises → Azure SQL Database Data Movement is working**
-- Incremental source changes were propagated using CDC during the POC validation
-- Data transfer and target validation were performed successfully
-- Connectivity/configuration troubleshooting was part of the implementation
+- Origem operacional: **MySQL em execução em ambiente local (on-premises)**
+- Plataforma de integração: **Qlik Talend Cloud (QTC)**
+- Camada de integração local: **Qlik Data Gateway / ambiente de máquina virtual**
+- Recurso de integração de dados: **Qlik Data Movement**
+- Padrão de replicação: **carga inicial + CDC (Change Data Capture)**
+- Destino validado: **Azure SQL Database**
+- Resultado validado: **a movimentação de dados do MySQL local para o Azure SQL Database está funcionando**
+- Alterações incrementais na origem foram propagadas por meio de CDC durante a validação da POC
+- A transferência de dados e a validação no destino foram realizadas com sucesso
+- A resolução de problemas de conectividade e configuração fez parte da implementação
 
-No production latency SLA or strict real-time performance claim should be made from this POC.
+Não se deve afirmar a existência de SLA de latência de produção ou desempenho estritamente em tempo real com base nesta POC.
 
-## Current next phase
+## Próxima etapa atual
 
-- Keep **MySQL on-premises** as the source
-- Use **SQL Server as the test destination**
-- Reason for the destination change: reduce infrastructure cost while continuing the POC
-- Main technical goal: configure and validate **pipeline / orchestration tests** in Qlik Talend Cloud
-- Continue validating incremental replication / CDC behavior as the test architecture evolves
+- Manter o **MySQL local** como origem
+- Utilizar o **SQL Server como destino de testes**
+- Motivo da mudança de destino: reduzir os custos de infraestrutura durante a continuidade da POC
+- Principal objetivo técnico: configurar e validar **testes de pipelines / orquestração** no Qlik Talend Cloud
+- Continuar validando o comportamento da replicação incremental / CDC à medida que a arquitetura de testes evoluir
 
-SQL Server must be described as the destination for the current/next testing phase until the new flow and pipeline behavior are technically validated.
+O SQL Server deve ser descrito como destino da etapa de testes atual/próxima até que o novo fluxo e o comportamento dos pipelines sejam validados tecnicamente.
 
-## Explored but not finalized
+## Alternativas exploradas, mas não finalizadas
 
-- **AWS** environment
+- Ambiente **AWS**
 - **Qlik Open Lakehouse**
-- **Apache Iceberg** destination scenario
-- CDC workload configuration/exploration in the Open Lakehouse architecture
-- Reason not finalized: additional infrastructure cost for the proof of concept
+- Cenário de destino com **Apache Iceberg**
+- Configuração / exploração de uma carga de trabalho de CDC na arquitetura Open Lakehouse
+- Motivo da não finalização: custo adicional de infraestrutura para a prova de conceito
 
-This path must not be described as a completed data movement implementation.
+Esse caminho não deve ser descrito como uma implementação de movimentação de dados concluída.
 
-## Future stages after pipeline validation
+## Etapas futuras após a validação dos pipelines
 
-- Additional transformation / preparation scenarios
-- Data Products
-- Qlik Cloud analytical consumption for this POC
+- Cenários adicionais de transformação / preparação de dados
+- Produtos de Dados (Data Products)
+- Consumo analítico no Qlik Cloud para esta POC
 - Qlik Automate
-- Reporting workflows
+- Fluxos de relatórios
 - Qlik Answers
 
-## Documentation rule
+## Regra de documentação
 
-Public documentation should only describe an item as implemented or working when it has been technically completed and validated in the real project. Current test directions, explored alternatives, and planned features must always be labeled separately.
+A documentação pública só deve descrever um item como implementado ou funcionando quando ele tiver sido concluído e validado tecnicamente no projeto real. Direcionamentos atuais de testes, alternativas exploradas e funcionalidades planejadas devem sempre ser identificados separadamente.
