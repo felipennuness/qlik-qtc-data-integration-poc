@@ -1,29 +1,29 @@
-# Challenges & Technical Decisions
+# Desafios e decisões técnicas
 
-This document summarizes the technical decisions made during the current Qlik Talend Cloud proof of concept. It reflects only work that has actually been performed or explicitly planned in the project.
+Este documento resume as decisões técnicas tomadas durante a atual prova de conceito com Qlik Talend Cloud. Ele considera apenas atividades que foram efetivamente realizadas ou explicitamente planejadas no projeto.
 
-## 1. Connecting an on-premises source to Qlik Cloud
+## 1. Conexão de uma origem local ao Qlik Cloud
 
-The project source is a **MySQL database running on-premises**. Before any cloud data movement could be validated, the integration environment had to provide reliable connectivity between the local database and Qlik Talend Cloud.
+A origem do projeto é um **banco de dados MySQL em execução em ambiente local (on-premises)**. Antes de validar qualquer movimentação de dados para a nuvem, o ambiente de integração precisava fornecer conectividade confiável entre o banco de dados local e o Qlik Talend Cloud.
 
-### Work performed
+### Trabalho realizado
 
-- Prepared the virtual machine / integration environment.
-- Installed and configured the Qlik Data Gateway for Data Movement.
-- Validated that the gateway service was running correctly.
-- Configured and tested the MySQL source connection.
-- Troubleshot connectivity and configuration issues before enabling replication.
+- Preparação da máquina virtual / ambiente de integração.
+- Instalação e configuração do Qlik Data Gateway para Data Movement.
+- Validação de que o serviço do gateway estava em execução corretamente.
+- Configuração e teste da conexão com a origem MySQL.
+- Investigação e resolução de problemas de conectividade e configuração antes de habilitar a replicação.
 
-## 2. First validated destination: Azure SQL Database
+## 2. Primeiro destino validado: Azure SQL Database
 
-The first end-to-end data movement flow used **Azure SQL Database** as the cloud destination.
+O primeiro fluxo de movimentação de dados de ponta a ponta utilizou o **Azure SQL Database** como destino na nuvem.
 
-### Validated flow
+### Fluxo validado
 
 ```text
-MySQL On-Premises
+MySQL local (on-premises)
         ↓
-Qlik Data Gateway / Integration Environment
+Qlik Data Gateway / Ambiente de integração
         ↓
 Qlik Talend Cloud
         ↓
@@ -32,43 +32,43 @@ Qlik Data Movement
 Azure SQL Database
 ```
 
-The replication flow was created and executed successfully, and the transferred data was validated directly in Azure SQL Database.
+O fluxo de replicação foi criado e executado com sucesso, e os dados transferidos foram validados diretamente no Azure SQL Database.
 
-## 3. AWS + Apache Iceberg exploration
+## 3. Exploração de AWS + Apache Iceberg
 
-A second architecture was explored using **AWS infrastructure with Qlik Open Lakehouse / Apache Iceberg**.
+Uma segunda arquitetura foi explorada utilizando **infraestrutura AWS com Qlik Open Lakehouse / Apache Iceberg**.
 
-The exploration included work around:
+A exploração incluiu atividades relacionadas a:
 
-- AWS VPC and subnet configuration
-- Qlik network integration
-- IAM roles
-- S3 storage preparation
-- KMS configuration
-- Qlik Open Lakehouse cluster creation
-- CDC-oriented lakehouse workload configuration
+- Configuração de VPC e sub-redes na AWS
+- Integração de rede com o Qlik
+- Funções e permissões do IAM
+- Preparação do armazenamento no S3
+- Configuração do KMS
+- Criação de cluster do Qlik Open Lakehouse
+- Configuração de carga de trabalho de lakehouse orientada a CDC
 
-The AWS/Iceberg path was **not finalized** because continuing the required infrastructure for the POC would increase cost. It remains an explored architecture rather than a completed implementation.
+O caminho AWS / Iceberg **não foi finalizado**, pois a continuidade da infraestrutura necessária para a POC aumentaria os custos. Portanto, permanece como uma arquitetura explorada, e não como uma implementação concluída.
 
-## 4. Current direction: SQL Server for pipeline testing
+## 4. Direcionamento atual: SQL Server para testes de pipelines
 
-To continue the POC while controlling infrastructure cost, the next test destination is **Microsoft SQL Server**.
+Para dar continuidade à POC controlando os custos de infraestrutura, o próximo destino de testes será o **Microsoft SQL Server**.
 
-The objective of this phase is to use SQL Server as a lower-cost test target while progressing into:
+O objetivo desta etapa é utilizar o SQL Server como destino de testes de menor custo e avançar em:
 
-- pipeline configuration
-- pipeline orchestration
-- transformation scenarios
-- downstream validation
+- configuração de pipelines
+- orquestração de pipelines
+- cenários de transformação
+- validação dos dados nas etapas seguintes
 
-This phase is currently the next technical milestone and must not be described as completed until it has been implemented and validated.
+Esta etapa é o próximo marco técnico do projeto e não deve ser descrita como concluída até que tenha sido implementada e validada.
 
-## 5. Documentation principle
+## 5. Princípio de documentação
 
-This portfolio distinguishes three states clearly:
+Este portfólio diferencia claramente três situações:
 
-- **Validated:** implemented and technically verified in the project.
-- **Explored:** configured or investigated but not completed end to end.
-- **Planned / in progress:** intended next steps that are not yet validated.
+- **Validado:** implementado e verificado tecnicamente no projeto.
+- **Explorado:** configurado ou investigado, mas não concluído de ponta a ponta.
+- **Planejado / em andamento:** próximas etapas pretendidas, ainda não validadas.
 
-This distinction is maintained throughout the repository so the public case study remains technically accurate.
+Essa distinção é mantida em todo o repositório para que o estudo de caso público permaneça tecnicamente correto.
