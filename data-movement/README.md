@@ -1,62 +1,62 @@
-# Qlik Data Movement
+# Movimentação de dados com Qlik
 
-## Current milestone: working
+## Marco atual: funcionando
 
-The principal technical milestone reached so far in this POC is successful **Qlik Data Movement from an on-premises MySQL database to Azure SQL Database**, including incremental change replication with **CDC (Change Data Capture)**.
+O principal marco técnico alcançado até o momento nesta POC é a **movimentação bem-sucedida de dados de um banco MySQL local para o Azure SQL Database**, incluindo a replicação incremental de alterações por meio de **CDC (Change Data Capture, ou Captura de Dados Alterados)**.
 
-## Source
+## Origem
 
-The operational source is a **MySQL database running on-premises**. Qlik Data Gateway provides the integration layer required for Qlik Talend Cloud to access and replicate data from this environment.
+A origem operacional é um **banco de dados MySQL em execução em ambiente local (on-premises)**. O Qlik Data Gateway fornece a camada de integração necessária para que o Qlik Talend Cloud acesse e replique dados desse ambiente.
 
-## Work completed
+## Trabalho concluído
 
-- Configured the MySQL on-premises source connection in Qlik Talend Cloud.
-- Configured the Azure SQL Database destination connection.
-- Defined the source-to-target Data Movement flow.
-- Executed the initial data movement from MySQL to Azure.
-- Configured and validated **CDC / incremental change replication** for subsequent source changes.
-- Confirmed successful transfer at the current POC stage.
-- Validated the moved data in the Azure destination.
-- Troubleshot connectivity and configuration issues during implementation.
+- Configuração da conexão com a origem MySQL local no Qlik Talend Cloud.
+- Configuração da conexão com o destino Azure SQL Database.
+- Definição do fluxo de movimentação de dados entre origem e destino.
+- Execução da movimentação inicial de dados do MySQL para o Azure.
+- Configuração e validação de **CDC / replicação incremental de alterações** posteriores na origem.
+- Confirmação de que a transferência foi bem-sucedida na etapa atual da POC.
+- Validação dos dados movimentados no destino Azure.
+- Investigação e resolução de problemas de conectividade e configuração durante a implementação.
 
-## Validated flow
+## Fluxo validado
 
 ```text
-MySQL On-Premises
+MySQL local (on-premises)
       ↓
 Qlik Data Gateway
       ↓
 Qlik Talend Cloud
       ↓
-Initial Load + CDC
+Carga inicial + CDC
       ↓
 Qlik Data Movement
       ↓
 Azure SQL Database
       ↓
-Target Validation
+Validação no destino
 ```
 
-## CDC — Change Data Capture
+## CDC — Captura de Dados Alterados
 
-CDC allows the integration flow to capture changes occurring in the source after the initial load and propagate them incrementally to the target.
+O CDC permite que o fluxo de integração capture as alterações realizadas na origem após a carga inicial e as propague incrementalmente para o destino.
 
-In this POC, CDC is important because it demonstrates a replication pattern that avoids performing a complete reload every time operational data changes.
+Nesta POC, o CDC é importante porque demonstra um padrão de replicação que evita executar uma carga completa sempre que os dados operacionais são alterados.
 
-The portfolio does **not** claim a production latency SLA or strict real-time behavior. The documented result is the functional implementation and validation of incremental change replication in the proof of concept.
+O portfólio **não afirma a existência de SLA de latência de produção nem comportamento estritamente em tempo real**. O resultado documentado é a implementação funcional e a validação da replicação incremental de alterações na prova de conceito.
 
-## AWS + Apache Iceberg exploration
+## Exploração de AWS + Apache Iceberg
 
-A separate AWS + Apache Iceberg destination scenario was configured/explored during the project using Qlik Open Lakehouse. The exploration also included a **CDC workload**.
+Um cenário separado de destino com AWS + Apache Iceberg foi configurado e explorado durante o projeto utilizando o Qlik Open Lakehouse. A exploração também incluiu uma **carga de trabalho de CDC**.
 
-This alternative was **not finalized because of the additional infrastructure cost for the POC** and is therefore documented as architectural exploration rather than a completed data movement path.
+Essa alternativa **não foi finalizada devido ao custo adicional de infraestrutura para a POC** e, por isso, está documentada como exploração de arquitetura, e não como um fluxo de movimentação de dados concluído.
 
-## Why this stage matters
+## Por que esta etapa é importante
 
-Before building downstream transformations, pipelines, analytics, reporting, or AI-assisted use cases, the architecture first needed to reliably move data from the on-premises operational source into a target environment and propagate subsequent changes incrementally.
+Antes de desenvolver transformações, pipelines, análises, relatórios ou casos de uso com inteligência artificial, a arquitetura precisava primeiro movimentar os dados da origem operacional local para um ambiente de destino de forma confiável e propagar as alterações posteriores de maneira incremental.
 
-The successful MySQL-to-Azure flow with CDC establishes that foundation.
+O fluxo bem-sucedido de MySQL para Azure com CDC estabelece essa base.
 
-## Next technical step
+## Próxima etapa técnica
 
-The next phase keeps **MySQL on-premises as the source** and uses **SQL Server as a lower-cost test destination** while the project advances into pipeline, orchestration, transformation, and continued CDC testing.
+A próxima etapa mantém o **MySQL local como origem** e utiliza o **SQL Server como destino de testes de menor custo**, enquanto o projeto avança nos testes de pipelines, orquestração, transformações e continuidade do CDC.
