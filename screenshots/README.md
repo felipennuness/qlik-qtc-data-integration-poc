@@ -1,85 +1,85 @@
-# Technical Evidence Screenshots
+# Evidências técnicas — capturas de tela
 
-This page presents a curated set of **sanitized screenshots from the real project**. The purpose is to provide technical evidence of the implementation while protecting internal infrastructure, account information, personal data, and client-specific identifiers.
+Esta página apresenta uma seleção de **capturas de tela tratadas e anonimizadas do projeto real**. O objetivo é fornecer evidências técnicas da implementação, protegendo a infraestrutura interna, informações de contas, dados pessoais e identificadores específicos de clientes.
 
-## 1. MySQL on-premises data source
+## 1. Origem de dados MySQL local
 
-![MySQL on-premises source](rc18_portfolio_screenshots_sanitized/38982d69-7d33-42ad-bb03-06d49bc3532d%20%281%29.jpeg)
+![Origem MySQL local](rc18_portfolio_screenshots_sanitized/38982d69-7d33-42ad-bb03-06d49bc3532d%20%281%29.jpeg)
 
-This screenshot documents the **MySQL database used as the operational source** for the POC.
+Esta captura documenta o **banco de dados MySQL utilizado como origem operacional** da POC.
 
-The source remains on-premises while Qlik Data Gateway and Qlik Talend Cloud provide the integration layer used to move and replicate data to the target environment.
+A origem permanece em ambiente local enquanto o Qlik Data Gateway e o Qlik Talend Cloud fornecem a camada de integração utilizada para movimentar e replicar os dados para o ambiente de destino.
 
-## 2. Qlik Data Gateway running
+## 2. Qlik Data Gateway em execução
 
-![Qlik Data Gateway running](rc18_portfolio_screenshots_sanitized/01-qlik-data-gateway-running.jpg)
+![Qlik Data Gateway em execução](rc18_portfolio_screenshots_sanitized/01-qlik-data-gateway-running.jpg)
 
-The Linux service for **Qlik Data Gateway – Data Movement** is active and running in the integration environment. This is evidence of the gateway/infrastructure layer used to enable the on-premises data movement scenario.
+O serviço Linux do **Qlik Data Gateway – Data Movement** está ativo e em execução no ambiente de integração. Esta é uma evidência da camada de gateway e infraestrutura utilizada para viabilizar o cenário de movimentação de dados a partir do ambiente local.
 
-## 3. MySQL on-premises → Azure SQL replication flow
+## 3. Fluxo de replicação MySQL local → Azure SQL
 
-![MySQL to Azure replication](rc18_portfolio_screenshots_sanitized/02-mysql-to-azure-pipeline.jpg)
+![Replicação de MySQL para Azure](rc18_portfolio_screenshots_sanitized/02-mysql-to-azure-pipeline.jpg)
 
-The Qlik replication flow represents the validated Phase 1 architecture:
+O fluxo de replicação no Qlik representa a arquitetura validada da Etapa 1:
 
 ```text
-MySQL On-Premises → Qlik Data Gateway → Qlik Talend Cloud / Data Movement → Azure SQL Database
+MySQL local → Qlik Data Gateway → Qlik Talend Cloud / Data Movement → Azure SQL Database
 ```
 
-The replication design includes **CDC (Change Data Capture)** so subsequent changes in the source can be propagated incrementally after the initial load.
+O desenho da replicação inclui **CDC (Change Data Capture, ou Captura de Dados Alterados)** para que as mudanças posteriores na origem sejam propagadas incrementalmente após a carga inicial.
 
-Internal connection and project names were replaced with generic portfolio labels.
+Os nomes internos de conexões e projetos foram substituídos por identificadores genéricos para o portfólio.
 
-## 4. Azure SQL target validation
+## 4. Validação do destino Azure SQL
 
-![Azure SQL target validation](rc18_portfolio_screenshots_sanitized/03-azure-sql-data-validation.jpg)
+![Validação do destino Azure SQL](rc18_portfolio_screenshots_sanitized/03-azure-sql-data-validation.jpg)
 
-This screenshot shows the destination database after replication, including a successful query against transferred records. Personal/test identifiers were removed from the prepared public version.
+Esta captura mostra o banco de dados de destino após a replicação, incluindo uma consulta executada com sucesso sobre os registros transferidos. Identificadores pessoais e de teste foram removidos da versão pública preparada.
 
-Together with the replication flow above, this provides evidence that data reached the Azure SQL destination and could be queried successfully.
+Juntamente com o fluxo de replicação acima, esta evidência demonstra que os dados chegaram ao destino Azure SQL e puderam ser consultados com sucesso.
 
-## 5. Qlik Open Lakehouse / Apache Iceberg exploration
+## 5. Exploração do Qlik Open Lakehouse / Apache Iceberg
 
-![Qlik Open Lakehouse Iceberg](rc18_portfolio_screenshots_sanitized/04-qlik-open-lakehouse-iceberg.jpg)
+![Qlik Open Lakehouse e Iceberg](rc18_portfolio_screenshots_sanitized/04-qlik-open-lakehouse-iceberg.jpg)
 
-This screenshot documents the **AWS + Apache Iceberg** architecture exploration using Qlik Open Lakehouse and a **CDC workload**.
+Esta captura documenta a exploração da arquitetura **AWS + Apache Iceberg** utilizando Qlik Open Lakehouse e uma **carga de trabalho de CDC**.
 
-This path was explored and configured during the POC but was **not finalized**, primarily because continuing the AWS infrastructure would add unnecessary cost to the proof of concept.
+Esse caminho foi explorado e configurado durante a POC, mas **não foi finalizado**, principalmente porque a continuidade da infraestrutura AWS acrescentaria custos desnecessários à prova de conceito.
 
-## 6. AWS network integration accepted in Qlik
+## 6. Integração de rede AWS aceita no Qlik
 
-![AWS network integration](rc18_portfolio_screenshots_sanitized/05-aws-network-integration.jpg)
+![Integração de rede AWS](rc18_portfolio_screenshots_sanitized/05-aws-network-integration.jpg)
 
-This screenshot shows that the AWS network integration configuration was accepted in Qlik during the Open Lakehouse exploration.
+Esta captura mostra que a configuração de integração de rede da AWS foi aceita no Qlik durante a exploração do Open Lakehouse.
 
-AWS account numbers, VPC identifiers, internal data space names, and project-specific identifiers were generalized in the prepared public version.
+Números de contas AWS, identificadores de VPC, nomes internos de espaços de dados e identificadores específicos do projeto foram generalizados na versão pública preparada.
 
-## CDC evidence and scope
+## Evidências e escopo do CDC
 
-CDC is part of the replication architecture used in the POC. Its purpose is to capture changes occurring after the initial data load and propagate those changes incrementally through the data movement flow.
+O CDC faz parte da arquitetura de replicação utilizada na POC. Seu objetivo é capturar as alterações que ocorrem após a carga inicial e propagá-las incrementalmente pelo fluxo de movimentação de dados.
 
-The repository documents CDC as a **validated technical capability in the POC**, without claiming a production latency SLA or strict real-time performance.
+O repositório documenta o CDC como um **recurso técnico validado na POC**, sem afirmar a existência de SLA de latência de produção ou desempenho estritamente em tempo real.
 
-## What these screenshots prove
+## O que estas capturas de tela comprovam
 
-The evidence set supports the following project milestones:
+O conjunto de evidências dá suporte aos seguintes marcos do projeto:
 
-- MySQL on-premises was used as the operational data source.
-- Qlik Data Gateway was configured and running in the integration environment.
-- Qlik Talend Cloud / Data Movement was configured for replication.
-- CDC / incremental change replication was part of the data movement architecture.
-- Azure SQL Database was used as the validated Phase 1 destination.
-- Replicated data was successfully validated in Azure SQL Database.
-- AWS network integration and Qlik Open Lakehouse / Apache Iceberg were genuinely explored as an alternative architecture.
+- O MySQL local foi utilizado como origem operacional dos dados.
+- O Qlik Data Gateway foi configurado e estava em execução no ambiente de integração.
+- O Qlik Talend Cloud / Data Movement foi configurado para replicação.
+- O CDC / replicação incremental de alterações fez parte da arquitetura de movimentação de dados.
+- O Azure SQL Database foi utilizado como destino validado da Etapa 1.
+- Os dados replicados foram validados com sucesso no Azure SQL Database.
+- A integração de rede AWS e o Qlik Open Lakehouse / Apache Iceberg foram efetivamente explorados como uma arquitetura alternativa.
 
-## Screenshots intentionally excluded
+## Capturas de tela intencionalmente excluídas
 
-Some real implementation screenshots were intentionally not published because they expose excessive infrastructure detail with limited additional portfolio value. Examples include raw AWS VPC/subnet pages, KMS key identifiers and ARNs, IAM account/role details, Azure resource screens containing IP addresses or administrator information, and screenshots with internal hostnames or personal/test data.
+Algumas capturas de tela da implementação real foram intencionalmente deixadas de fora da publicação por exporem detalhes excessivos de infraestrutura sem agregar valor proporcional ao portfólio. Exemplos: páginas brutas de VPC e sub-redes da AWS, identificadores de chaves KMS e ARNs, detalhes de contas e funções IAM, telas de recursos Azure contendo endereços IP ou informações de administradores, além de capturas com nomes internos de servidores ou dados pessoais/de teste.
 
-## Current SQL Server phase
+## Etapa atual com SQL Server
 
-The next architecture phase will use **Microsoft SQL Server as the lower-cost test destination for pipeline development and continued CDC testing**. Evidence for that phase will only be added after the SQL Server destination and pipeline flow are actually configured and technically validated.
+A próxima etapa da arquitetura utilizará o **Microsoft SQL Server como destino de testes de menor custo para o desenvolvimento de pipelines e a continuidade dos testes de CDC**. As evidências dessa etapa só serão adicionadas depois que o destino SQL Server e o fluxo de pipelines estiverem efetivamente configurados e validados tecnicamente.
 
-## Sanitization policy
+## Política de anonimização
 
-Public screenshots must not expose passwords, API keys, tokens, certificates, project infrastructure IP addresses, AWS account numbers, VPC/subnet IDs, ARNs, KMS identifiers, internal server/database names, email addresses, tenant identifiers, CPF, or confidential customer/business information.
+As capturas de tela públicas não devem expor senhas, chaves de API, tokens, certificados, endereços IP da infraestrutura do projeto, números de contas AWS, IDs de VPC/sub-redes, ARNs, identificadores KMS, nomes internos de servidores/bancos de dados, endereços de e-mail, identificadores de tenant, CPF ou informações confidenciais de clientes e negócios.
